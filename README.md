@@ -27,3 +27,6 @@ python kmeans_clustering.py
 
 # 4. Run app
 streamlit run app.py
+
+
+Link:https://2005prajwal-sct-ml-02-app-6rjifj.streamlit.app/
