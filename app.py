@@ -1,21 +1,28 @@
 import streamlit as st
 import pandas as pd
-from sklearn.cluster import KMeans
+import joblib
+import matplotlib.pyplot as plt
 
-st.title("Mall Customer Segmentation")
+# Load model & dataset
+model = joblib.load("kmeans_model.pkl")
+df = pd.read_csv("clustered_customers.csv")
 
-# File upload
-uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
-if uploaded_file is not None:
-    data = pd.read_csv(uploaded_file)
-    st.write("Data preview:", data.head())
+st.title("🛍️ Mall Customer Segmentation")
+st.write("K-means clustering based customer segmentation app")
 
-    # Number of clusters slider
-    n_clusters = st.slider("Select number of clusters", min_value=2, max_value=10, value=5)
+# Show dataset preview
+if st.checkbox("Show dataset"):
+    st.dataframe(df.head())
 
-    # Button to run clustering
-    if st.button("Run KMeans"):
-        kmeans = KMeans(n_clusters=n_clusters, random_state=42)
-        data['Cluster'] = kmeans.fit_predict(data[['Annual Income (k$)','Spending Score (1-100)']])
-        st.success("Clustering done!")
-        st.write(data.head())
+# Visualize clusters
+st.subheader("Customer Segmentation")
+plt.figure(figsize=(8, 6))
+plt.scatter(
+    df["Annual Income (k$)"],
+    df["Spending Score (1-100)"],
+    c=df["Cluster"],
+    cmap="rainbow"
+)
+plt.xlabel("Annual Income (k$)")
+plt.ylabel("Spending Score (1-100)")
+st.pyplot(plt)

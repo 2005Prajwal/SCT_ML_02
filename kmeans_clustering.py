@@ -1,16 +1,21 @@
 import pandas as pd
 from sklearn.cluster import KMeans
+import joblib
 
-# Load your dataset
-data = pd.read_csv("mall_customers.csv")
+# Load dataset
+df = pd.read_csv("Mall_Customers.csv")
 
-# Ask user how many clusters
-n_clusters = int(input("Enter the number of clusters: "))
+# Select features
+X = df[["Annual Income (k$)", "Spending Score (1-100)"]]
 
-# Perform clustering
-kmeans = KMeans(n_clusters=n_clusters, random_state=42)
-data['Cluster'] = kmeans.fit_predict(data[['Annual Income (k$)','Spending Score (1-100)']])
+# Train KMeans
+kmeans = KMeans(n_clusters=5, random_state=42)
+df["Cluster"] = kmeans.fit_predict(X)
 
-print("Clustering done! Here are the first 5 rows with cluster labels:")
-print(data.head())
+# Save model & clustered data
+joblib.dump(kmeans, "kmeans_model.pkl")
+df.to_csv("clustered_customers.csv", index=False)
+
+print("✅ Model trained and saved as kmeans_model.pkl")
+
 
