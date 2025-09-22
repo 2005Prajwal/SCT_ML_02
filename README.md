@@ -1,3 +1,6 @@
+Link ://2005prajwal-sct-ml-02-app-6rjifj.streamlit.app/
+
+
 # 🛍️ Mall Customer Segmentation (K-means Clustering)
 
 This project applies **K-means clustering** to segment customers of a mall based on their **Annual Income** and **Spending Score**.
@@ -28,5 +31,3 @@ python kmeans_clustering.py
 # 4. Run app
 streamlit run app.py
 
-
-Link:https://2005prajwal-sct-ml-02-app-6rjifj.streamlit.app/
