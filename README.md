@@ -1,4 +1,4 @@
-Link ://2005prajwal-sct-ml-02-app-6rjifj.streamlit.app/
+Link :https://2005prajwal-sct-ml-02-app-6rjifj.streamlit.app/
 
 
 # 🛍️ Mall Customer Segmentation (K-means Clustering)
